@@ -1,0 +1,23 @@
+Approach:
+1. Create 10 different Iam user accounts for every individual
+2. Create an IAM group
+3. Attach a customised policy to the group specifying the specific ip address of our network
+4. Add users to this group
+
+policy:
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": "*",
+            "Condition": {
+                "IpAddress": {
+                    "aws:SourceIp": "202.122.21.69/24"
+                }
+            }
+        }
+    ]
+} 
