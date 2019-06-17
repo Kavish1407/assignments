@@ -1,0 +1,4 @@
+#gcloud sdk is already installed on compute engine ubuntu instance.
+#following commands will list the gcloud components status (installed/not installed) and install the [gsutil, kubectl, bq, gcloud Alpha commands, gcloud beta command] components
+gcloud components list
+sudo apt-get update && sudo apt-get upgrade
