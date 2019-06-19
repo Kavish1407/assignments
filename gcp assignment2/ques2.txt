@@ -1,0 +1,12 @@
+##command1 creates instance to act as nat gateway
+ gcloud compute instances create k-ques2-assign2 --image ubuntu-1604-xenial-v20190617 --image-project ubuntu-os-cloud --network k-assign2-ques1 --subnet k-subnet1 --zone us-east1-b --tags nat --can-ip-forward
+
+##command2 creates instance with no public ip
+gcloud compute instances create k-ques2-assign2-noadd --image ubuntu-1604-xenial-v20190617 --image-project ubuntu-os-cloud --network k-assign2-ques1 --subnet k-subnet1 --zone us-east1-b --no-address
+
+##command3 adds a tag 
+gcloud compute instances add-tags k-ques2-assign2-noadd --tags noadd --zone us-east1-b
+
+##command4 creates a route from private instance to nat gateway
+gcloud compute routes create k-ques2-no-ip-route --network k-assign2-ques1 --destination-range 0.0.0.0/0 --next-hop-instance k-ques2-assign2 --next-hop-instance-zone us-east1-b --tags noadd --priority 800
+
